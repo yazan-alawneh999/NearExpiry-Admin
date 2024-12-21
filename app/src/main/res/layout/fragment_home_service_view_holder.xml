@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.big0soft.nearexpireadmin.data.models.HomeCategoryModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:gravity="center"
+
+        android:orientation="vertical"
+
+        >
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@{model.color}"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:strokeColor="@null">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivServiceIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="centerInside"
+                android:src="@{model.icon}"
+
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvServiceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@{model.title}"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:textColor="?colorOnBackground" />
+    </LinearLayout>
+</layout>
+

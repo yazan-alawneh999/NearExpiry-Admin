@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp">
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/fragmentProductDetailsImageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_4sdp"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentProductDetailsImageSlider"
+                app:layout_constraintStart_toStartOf="@id/fragmentProductDetailsImageSlider">
+
+                <RatingBar
+                    android:id="@+id/fragmentProductDetailsRatingbar"
+                    style="?ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:numStars="5"
+                    android:gravity="center"
+                    android:progressTint="#F3C63F"
+                    android:rating="4"
+
+                    />
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="(4)"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                    android:id="@+id/fragmentProductDetailsRatingTv"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/fragmentProductDetailsSliderIndicator"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+            </TableRow>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsImageSlider"
+                tools:text="Premium Wireless Headphones" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsDetaildDescLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:text="@string/detailed_description"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsProductName" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsDetailsTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsDetaildDescLabel"
+                tools:text="This product is a high-quality item perfect for your needs. It features advanced technology and durable materials, ensuring longevity and performance. Ideal for both personal and professional use." />
+
+            <TableRow
+                android:id="@+id/fragmentProductDetailsCreatedAtContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsDetailsTv">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/created_on" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentProductDetailsProductCreatedAt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    tools:text="12/10/2024" />
+
+            </TableRow>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsExpiryDateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:text="@string/expiry_date_label"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsCreatedAtContainer" />
+
+            <TableRow
+                android:id="@+id/fragmentProductDetailsExpiryDateContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsExpiryDateLabel">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentProductDetailsExpiryOnLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/expiry_on" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentProductDetailsExpiryDateTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    tools:text="12/12/2024" />
+            </TableRow>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsDiscountInfoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:text="@string/discount_info_label"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsExpiryDateContainer" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsDiscountInfoTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:lineSpacingMultiplier="1.2"
+                app:layout_constraintEnd_toEndOf="@id/fragmentProductDetailsDiscountInfoLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsDiscountInfoLabel"
+                tools:text="20% off on selected items Limited time offer" />
+
+
+            <TableRow
+                android:id="@+id/fragmentProductDetailsQuantityContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsDiscountInfoTv">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentProductDetailsQuantityLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quantity"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentProductDetailsQuantityTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    tools:text="10" />
+            </TableRow>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsCategoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:text="@string/category"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsQuantityContainer" />
+
+            <TableLayout
+                android:id="@+id/fragmentProductDetailsTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsCategoryLabel">
+
+                <TableRow
+                    android:id="@+id/fragmentProductDetailsMainCategoryContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/fragmentProductDetailsMainCategoryLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_category_label" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/fragmentProductDetailsMainCategoryTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        tools:text="Electronics" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/fragmentProductDetailsSubcategoryContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/fragmentProductDetailsSubCategoryLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sub_category" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/fragmentProductDetailsSubcategoryTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"/>
+                        tools:text="Mobile Phones" />
+                </TableRow>
+            </TableLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentProductDetailsDeliveryAvailabilityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:text="@string/delivery_availability"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsTableLayout" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/fragmentProductDetailsDeliveryAvailabilitySwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/_8sdp"
+                android:checked="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsDeliveryAvailabilityLabel" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragmentProductDetailsEditProductBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/edit_product_details"
+                app:cornerRadius="@dimen/_4sdp"
+                app:icon="@drawable/i_edit"
+                app:iconGravity="textStart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentProductDetailsDeliveryAvailabilitySwitch"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

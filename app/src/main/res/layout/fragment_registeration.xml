@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment.RegisterFragment">
+
+    <data>
+
+        <variable
+            name="registerViewModel"
+            type="com.big0soft.nearexpireadmin.ui.viewmodel.RegisterViewModel" />
+
+        <import type="com.big0soft.nearexpireadmin.data.validation.ValidateResult" />
+
+        <import type="com.big0soft.nearexpireadmin.domain.enums.Status" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragmentRegistration"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_8sdp">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentRegistrationTitleTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/fragment_launch_screen_title"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.05" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentRegistrationDescriptionTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:text="@string/register_description"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentRegistrationTitleTv" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentRegistrationDescriptionTv">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_email"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:_resError="@{registerViewModel.providerValidateResultLiveData.message}"
+                        android:hint="@string/email"
+                        app:startIconDrawable="@drawable/mail"
+
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fragmentRegisterEditTextEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:afterTextChanged="@{(edit)-> registerViewModel.setProviderError(ValidateResult.progressResult)}"
+                            android:inputType="textEmailAddress"
+                            android:maxLength="50"
+
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fragmentLoginTextInputLayoutPassword"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:_resError="@{registerViewModel.passwordValidateResultLiveData.message}"
+                        android:hint="@string/password"
+                        android:maxLength="50"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="?colorPrimary"
+                        app:startIconDrawable="@drawable/lock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fragmentRegisterEditTextPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:afterTextChanged="@{(edit)-> registerViewModel.setPasswordError(ValidateResult.progressResult)}"
+                            android:inputType="textPassword" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/fragmentRegisterTextInputLayoutConfirmPassword"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:_resError="@{registerViewModel.confirmPasswordValidateResultLiveData.message}"
+                        android:hint="@string/confirm_password"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="?colorPrimary"
+
+                        app:startIconDrawable="@drawable/lock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fragmentRegisterEditTextConfirmPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:afterTextChanged="@{(edit)-> registerViewModel.setConfirmPasswordError(ValidateResult.progressResult)}"
+
+                            android:inputType="textPassword" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:text="@string/register_check_box_string" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_40sdp"
+
+                        >
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/fragmentRegisterButtonSignupBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/sign_up"
+                            android:visibility="@{registerViewModel.registerStatusLiveData == Status.LOADING?View.GONE:View.VISIBLE, default = visible}"
+                            app:cornerRadius="@dimen/_4sdp" />
+
+                        <ProgressBar
+                            android:id="@+id/registerFragmentProgressbar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:indeterminateTint="?colorPrimary"
+                            android:visibility="@{registerViewModel.registerStatusLiveData == Status.LOADING?View.VISIBLE:View.GONE, default = gone}" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_weight="1"
+                        android:background="@color/md_theme_outline" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:text="@string/or"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                        android:textColor="?colorOutline" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_weight="1"
+                        android:background="@color/md_theme_outline" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/continue_with_googl_bg"
+                        android:text="@string/continue_with_google"
+                        android:textColor="#DE3B40"
+                        app:cornerRadius="@dimen/_4sdp"
+                        app:icon="@drawable/google"
+                        app:iconGravity="textStart"
+                        app:iconTint="#DE3B40"
+
+                        />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="?colorAccent"
+                        android:text="@string/continue_with_email"
+                        android:textColor="?colorOnPrimary"
+                        app:cornerRadius="@dimen/_4sdp"
+                        app:icon="@drawable/ic_twotone_email_24"
+                        app:iconGravity="textStart"
+                        app:iconTint="?colorOnSecondary"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/already_has_an_account"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/fragmentRegisterButtonSignInBtn"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_35sdp"
+                        android:gravity="start|center"
+                        android:text="@string/sign_in_"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        android:textColor="?colorPrimary" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

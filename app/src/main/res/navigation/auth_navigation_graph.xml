@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_navigation_graph"
+    app:startDestination="@id/fragmentLogin2">
+
+    <fragment
+        android:id="@+id/fragmentLogin2"
+        android:name="com.big0soft.nearexpireadmin.ui.fragment.LoginFragment"
+        android:label="@string/loginfragment">
+        <action
+            android:id="@+id/action_fragmentLogin2_to_fragmentRegistration2"
+            app:destination="@id/fragmentRegistration2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentRegistration2"
+        android:name="com.big0soft.nearexpireadmin.ui.fragment.RegisterFragment"
+        android:label="@string/register_fragment_label">
+        <action
+            android:id="@+id/action_fragmentRegistration2_to_fragmentLogin2"
+            app:destination="@id/fragmentLogin2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+
+</navigation>

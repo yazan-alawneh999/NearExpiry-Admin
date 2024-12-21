@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentAddProduct"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_4sdp">
+
+            <FrameLayout
+                android:id="@+id/fragmentAddProductImageContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/fragmentAddProductImageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_220sdp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentAddProductAddImageBtn"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_220sdp"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:icon="@drawable/camera_01"
+                    app:iconGravity="textStart"
+                    app:iconSize="@dimen/_25sdp"
+                    app:iconTint="?colorOnBackground" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/fragmentAddProductLayoutIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentAddProductImageContainer"
+                app:layout_constraintEnd_toEndOf="@id/fragmentAddProductImageContainer"
+                app:layout_constraintStart_toStartOf="@id/fragmentAddProductImageContainer" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragmentAddProductNameInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:hint="@string/product_name_required"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentAddProductImageContainer"
+                app:startIconDrawable="@drawable/c_info">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragmentAddProductNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragmentAddProductDescriptionInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:hint="@string/description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentAddProductNameInputLayout"
+                app:startIconDrawable="@drawable/c_info">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragmentAddProductDescriptionEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragmentAddProductExpiryDateInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:hint="@string/expiry_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentAddProductDescriptionInputLayout"
+                app:startIconDrawable="@drawable/calendar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragmentAddProductExpiryDateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/fragmentAddProductQuantityContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentAddProductExpiryDateInputLayout">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentAddProductQuantityInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:hint="@string/add_product_quantity_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAddProductNameInputLayout"
+                    app:startIconDrawable="@drawable/c_info">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentAddProductQuantityEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentAddProducQuantityTypeInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:hint="@string/quantity_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentAddProductDescriptionInputLayout"
+                    app:startIconDrawable="@drawable/c_info">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentAddProductQuantityTypeEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragmentAddProductDiscountInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:hint="@string/discount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentAddProductQuantityContainer"
+                app:startIconDrawable="@drawable/bag_time">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragmentAddProductDiscountEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragmentAddProductPriceInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:hint="@string/price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentAddProductDiscountInputLayout"
+                app:startIconDrawable="@drawable/bitcoin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragmentAddProductPriceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/fragmentAddProductDeliveryServiceSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:checked="true"
+                android:drawableStart="@drawable/delivery"
+                android:drawablePadding="@dimen/_4sdp"
+                android:drawableTint="?colorOnBackground"
+                android:text="@string/delivery_service"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentAddProductPriceInputLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_40sdp"
+    android:orientation="horizontal">
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:cornerRadius="@dimen/_4sdp"/>
+
+
+
+</LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

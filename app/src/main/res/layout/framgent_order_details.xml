@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/_8sdp"
+    >
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:text="@string/delivery_location"
+        android:id="@+id/fragmentOrderDetailsDeliveryLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        app:riv_corner_radius="@dimen/_8sdp"
+        android:src="@drawable/image__6_"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsDeliveryLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/fragmentOrderDetailsLocationImageView"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsLocationImageView"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/fragmentOrderDetailsLocationTv"
+        tools:text="123 Main Street, Apt 4B, New York, NY 10001"
+        style="@style/TextAppearance.Material3.TitleMedium"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:text="@string/total_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsLocationTv"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:id="@+id/fragmentOrderDetailsTotalPriceLabel"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        tools:text="$123.45"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsTotalPriceLabel"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/fragmentOrderDetailsTotalPriceTv"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:text="@string/order_infromation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customerDetailsContainer"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:id="@+id/fragmentOrderDetailsOrderInformationLabel"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderInformationContainer"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsOrderInformationLabel"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <TableRow >
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:text="@string/order_num_label"
+                android:id="@+id/fragmentOrderDetailsOrderNumberLabel"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                tools:text="Jane Smith"
+                android:id="@+id/fragmentOrderDetailsOrderNumTv"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
+        </TableRow>
+        <TableRow >
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:text="@string/order_status_label"
+                android:id="@+id/fragmentOrderDetailsOrderStatusLabel"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:id="@+id/fragmentOrderDetailsOrderStatusTv"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                tools:text=" Shipped" />
+        </TableRow>
+        <TableRow >
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:text="@string/order_date_label"
+                android:id="@+id/fragmentOrderDetailsOrderDateLabel"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                tools:text="2023-10-15 14:30"
+                android:id="@+id/fragmentOrderDetailsOrderDateTV"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:text="@string/customer_details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsTotalPriceTv"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:id="@+id/fragmentOrderDetailsCustomerDetailsLabel"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/customerDetailsContainer"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsCustomerDetailsLabel"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <TableRow >
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:text="@string/customer_name_label"
+                android:id="@+id/fragmentOrderDetailsCustomerNameLabel"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                tools:text=" Jane Smith"
+                android:id="@+id/fragmentOrderDetailsCustomerNameTv"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
+        </TableRow>
+        <TableRow >
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:text="@string/phone_label"
+                android:id="@+id/fragmentOrderDetailsCustomerPhoneLabel"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:id="@+id/fragmentOrderDetailsPhoneTv"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                tools:text=" +1234567890" />
+        </TableRow>
+        <TableRow >
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:text="@string/email_label"
+                android:id="@+id/fragmentOrderDetailsCustomerEmailLabel"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                tools:text="jane.smith@example.com"
+                android:id="@+id/fragmentOrderDetailsCustomerEmailTV"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:text="@string/ordered_products"
+        app:layout_constraintTop_toBottomOf="@id/orderInformationContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:id="@+id/fragmentOrderDetailsOrderedProductsLabel"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragmentOrderDetailsOrderedProductsLabel"
+        tools:listitem="@layout/ordered_product_view_holder"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/fragmentOrderDetailsOrderedProductsRecyclerView"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

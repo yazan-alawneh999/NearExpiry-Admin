@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/store_registration_navigation"
+    app:startDestination="@id/fragmentStoreSetup2">
+
+
+    <fragment
+        android:id="@+id/fragmentContactDetails2"
+        android:name="com.big0soft.nearexpireadmin.ui.fragment.ContactDetailsFragment"
+        android:label="@string/contact_details" >
+        <action
+            android:id="@+id/action_contactDetailsFragment_to_verificationFragment"
+            app:destination="@id/fragmentVerification2"
+            app:exitAnim="@android:anim/slide_in_left"
+            app:enterAnim="@android:anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLocationDetails2"
+        android:name="com.big0soft.nearexpireadmin.ui.fragment.LocationDetailsFragment"
+        android:label="@string/location_details" >
+        <action
+            android:id="@+id/action_locationDetailsFragment_to_contactDetailsFragment"
+            app:destination="@id/fragmentContactDetails2"
+            app:exitAnim="@android:anim/slide_in_left"
+            app:enterAnim="@android:anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentStoreSetup2"
+        android:name="com.big0soft.nearexpireadmin.ui.fragment.StoreSetupFragment"
+        android:label="@string/store_setup"
+
+        >
+        <action
+            android:id="@+id/action_storeSetupFragment_to_locationDetailsFragment"
+            app:destination="@id/fragmentLocationDetails2"
+            app:exitAnim="@android:anim/slide_in_left"
+            app:enterAnim="@android:anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentVerification2"
+        android:name="com.big0soft.nearexpireadmin.ui.fragment.VerificationFragment"
+        android:label="@string/verification_screen_label" />
+</navigation>

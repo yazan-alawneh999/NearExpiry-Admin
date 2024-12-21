@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activities.StoreRegistrationActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/activityRegistrationStoreToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_collapseMode="pin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIconTint="?colorOnBackground"
+            app:popupTheme="@style/ThemeOverlay.Material3.Toolbar.Surface"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:titleTextColor="?colorOnBackground"
+            tools:title="test"
+            tools:titleTextAppearance="?textAppearanceHeadline5" />
+
+        <com.aceinteract.android.stepper.StepperNavigationView
+            android:id="@+id/ActivityRegistrationsStepper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activityRegistrationStoreToolbar"
+            app:stepperIconSize="@dimen/_16sdp"
+            app:stepperItems="@menu/steper_menu"
+            app:stepperTextAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:stepperTextColor="?colorOnBackground"
+            app:stepperType="tab_numbered"
+
+            app:stepperWidgetColor="?colorPrimary" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ActivityRegistrationsStepper"
+            app:navGraph="@navigation/store_registration_navigation"
+
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

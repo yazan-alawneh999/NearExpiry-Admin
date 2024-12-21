@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment.StoreSetupFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.big0soft.nearexpireadmin.ui.viewmodel.StoreSetupViewModel" />
+
+        <import type="com.big0soft.nearexpireadmin.domain.enums.Status" />
+
+        <import type="android.view.View" />
+
+        <import type="com.big0soft.nearexpireadmin.data.validation.ValidateResult" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragmentStoreSetup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_8sdp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:id="@+id/fragmentStoreSetupTitleLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/store_information"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentStoreSetupNameInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:_resError="@{viewModel.nameValidationResultLiveData.message}"
+                    android:hint="@string/store_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupTitleLayout"
+                    app:startIconDrawable="@drawable/store">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentStoreSetupNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:afterTextChanged="@{(edit)->viewModel.setNameValidationResultLiveData(ValidateResult.progressResult)}"
+                        android:maxLength="50" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fragmentStoreSetupDescInputLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:_resError="@{viewModel.descriptionValidationResultLiveData.message}"
+                    android:hint="@string/store_description_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupNameInputLayout"
+                    app:startIconDrawable="@drawable/layout_11">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragmentStoreSetupDescEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:afterTextChanged="@{(edit)->viewModel.setDescriptionValidationResultLiveData(ValidateResult.progressResult)}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentStoreSetupLogoLabel"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:text="@string/choose_logo"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupDescInputLayout" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentStoreSetupUplaodImageBtn"
+                    android:layout_width="@dimen/_155sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/upload_logo"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:icon="@drawable/upload"
+                    app:iconGravity="textStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupLogoLabel" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/fragmentStoreSetupLogoImageView"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:imageURL="@{viewModel.imageLogoLiveData}"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{viewModel.imageLogoLiveData == null}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupUplaodImageBtn"
+                    app:riv_corner_radius="@dimen/_6sdp"
+
+                    tools:src="@drawable/image_2" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/fragmentStoreSetupBackgroundLabel"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:text="@string/choose_babckground"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupLogoImageView" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentStoreSetupUplaodBackgroundBtn"
+                    android:layout_width="@dimen/_155sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/upload_background"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:icon="@drawable/upload"
+                    app:iconGravity="textStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupBackgroundLabel" />
+
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/fragmentStoreSetupBackgroundImageView"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:imageURL="@{viewModel.imageBackgroundLiveData}"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{viewModel.imageBackgroundLiveData == null}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupUplaodBackgroundBtn"
+                    app:riv_corner_radius="@dimen/_6sdp"
+                    tools:src="@drawable/image_2" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragmentSetupNextBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/next"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentStoreSetupBackgroundImageView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
