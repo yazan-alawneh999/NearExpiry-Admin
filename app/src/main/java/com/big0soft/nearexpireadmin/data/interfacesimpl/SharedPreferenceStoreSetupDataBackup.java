@@ -21,7 +21,17 @@ public class SharedPreferenceStoreSetupDataBackup implements DataBackup<StoreSet
 
     @Override
     public StoreSetupRequest restore() {
-        return (StoreSetupRequest) dao.getObject(KEY_STORE_INFO, new StoreSetupRequest());
+        StoreSetupRequest storeSetupRequest = (StoreSetupRequest) dao.getObject(KEY_STORE_INFO, new StoreSetupRequest());
+        if (storeSetupRequest == null) {
+            storeSetupRequest = new StoreSetupRequest();
+            storeSetupRequest.setName("");
+            storeSetupRequest.setDescription("");
+            storeSetupRequest.setImageLogo("");
+            storeSetupRequest.setBackgroundImage("");
+
+        }
+
+        return storeSetupRequest;
     }
 
     @Override

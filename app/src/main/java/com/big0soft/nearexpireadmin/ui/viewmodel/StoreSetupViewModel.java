@@ -41,7 +41,6 @@ public class StoreSetupViewModel extends AndroidViewModel {
     private final MutableLiveData<StoreSetupRequest> StoreSetupRequestBackupLiveData = new MutableLiveData<>();
 
 
-
     private final BaseRepository baseRepository;
     private final IAuthorization authorization;
 
@@ -61,6 +60,7 @@ public class StoreSetupViewModel extends AndroidViewModel {
         if (!isRequestValid(request)) {
             return;
         }
+        successStoreSetupLiveData.setValue(null);
     }
 
     public LiveData<StoreSetupResponse> getSuccessStoreSetupLiveData() {
@@ -74,10 +74,12 @@ public class StoreSetupViewModel extends AndroidViewModel {
     public LiveData<Status> getStatusStoreSetupLiveData() {
         return statusStoreSetupLiveData;
     }
+
     public void setSuccessStoreSetupLiveData(StoreSetupResponse storeSetupResponse) {
         successStoreSetupLiveData.setValue(storeSetupResponse);
 
     }
+
     public void setErrorStoreSetupLiveData(Integer error) {
         errorStoreSetupLiveData.setValue(error);
     }
@@ -96,11 +98,11 @@ public class StoreSetupViewModel extends AndroidViewModel {
             return false;
         }
         if (!imageLogoValidateResult.isSuccess()) {
-            imageLogoValidationResultLiveData.setValue(new ValidateResult(false,R.string.logo_image_required));
+            imageLogoValidationResultLiveData.setValue(new ValidateResult(false, R.string.logo_image_required));
             return false;
         }
         if (!imageBackgroundValidateResult.isSuccess()) {
-            imageBackgroundValidationResultLiveData.setValue(new ValidateResult(false,R.string.image_background_required));
+            imageBackgroundValidationResultLiveData.setValue(new ValidateResult(false, R.string.image_background_required));
             return false;
         }
         return true;
@@ -123,6 +125,7 @@ public class StoreSetupViewModel extends AndroidViewModel {
     public LiveData<String> getImageBackgroundLiveData() {
         return imageBackgroundLiveData;
     }
+
 
     public void setNameValidationResultLiveData(ValidateResult nameValidateResult) {
         nameValidationResultLiveData.setValue(nameValidateResult);
@@ -164,6 +167,10 @@ public class StoreSetupViewModel extends AndroidViewModel {
 
     public void restoreStoreInfo() {
         StoreSetupRequestBackupLiveData.setValue(storeBackup.restore());
+    }
+
+    public LiveData<StoreSetupRequest> getStoreSetupRequestBackupLiveData() {
+        return StoreSetupRequestBackupLiveData;
     }
 
     public void clearStoreInfo() {

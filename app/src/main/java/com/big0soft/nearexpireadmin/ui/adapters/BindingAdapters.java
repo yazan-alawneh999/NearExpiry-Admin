@@ -50,10 +50,10 @@ public class BindingAdapters {
         imageView.setImageDrawable(drawable);
     }
 
-    @BindingAdapter("android:visibility")
-    public static void setImageVisibility(RoundedImageView imageView, boolean isNullOrEmpty) {
-        imageView.setVisibility(isNullOrEmpty ? View.GONE : View.VISIBLE);
-    }
+//    @BindingAdapter("android:visibility")
+//    public static void setImageVisibility(RoundedImageView imageView, boolean isNullOrEmpty) {
+//        imageView.setVisibility(isNullOrEmpty ? View.GONE : View.VISIBLE);
+//    }
 
 
 }

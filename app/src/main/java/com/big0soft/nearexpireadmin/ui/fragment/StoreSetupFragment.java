@@ -64,6 +64,7 @@ public class StoreSetupFragment extends CustomeBaseFragment<FragmentSotreSetupBi
             public void onImagePicked(String imageUrl) {
                 if (imageUrl != null) {
                     imageBackground = imageUrl;
+                    viewModel.backupStoreInfo(storeSetupRequest());
                     viewModel.setImageBackgroundLiveData(imageBackground);
                 }
             }
@@ -80,6 +81,14 @@ public class StoreSetupFragment extends CustomeBaseFragment<FragmentSotreSetupBi
         super.onViewCreated(view, savedInstanceState, controller);
         getBinding().setViewModel(viewModel);
         getBinding().setLifecycleOwner(getViewLifecycleOwner());
+        viewModel.getStoreSetupRequestBackupLiveData().observe(getViewLifecycleOwner(), request -> {
+            getBinding().fragmentStoreSetupNameEditText.setText(request.getName());
+            getBinding().fragmentStoreSetupDescEditText.setText(request.getDescription());
+            imageLogo = request.getImageLogo();
+            imageBackground = request.getBackgroundImage();
+            viewModel.setImageLogoLiveData(imageLogo);
+            viewModel.setImageBackgroundLiveData(imageBackground);
+        });
         getBinding().fragmentSetupNextBtn.setOnClickListener(v -> viewModel.submitStoreSetup(storeSetupRequest()));
         viewModel.getSuccessStoreSetupLiveData().observe(getViewLifecycleOwner(), storeSetupResponse -> {
             controller.navigate(R.id.action_storeSetupFragment_to_locationDetailsFragment);
@@ -92,8 +101,10 @@ public class StoreSetupFragment extends CustomeBaseFragment<FragmentSotreSetupBi
             snackbar(result.getMessage()).show();
         });
 
-        getBinding().fragmentStoreSetupLogoImageView.setOnClickListener(v -> ImagePickerUtil.pickImage(this, imageLogoPickerLauncher));
-        getBinding().fragmentStoreSetupBackgroundImageView.setOnClickListener(v -> ImagePickerUtil.pickImage(this, imageBackgroundPickerLauncher));
+        getBinding().fragmentStoreSetupUplaodImageBtn.setOnClickListener(v -> ImagePickerUtil.pickImage(this, imageLogoPickerLauncher));
+        getBinding().fragmentStoreSetupUplaodBackgroundBtn.setOnClickListener(v -> ImagePickerUtil.pickImage(this, imageBackgroundPickerLauncher));
+
+
 
     }
 
@@ -130,7 +141,9 @@ public class StoreSetupFragment extends CustomeBaseFragment<FragmentSotreSetupBi
 
         if (imageUrl != null) {
             imageLogo = imageUrl;
+            viewModel.backupStoreInfo(storeSetupRequest());
             viewModel.setImageLogoLiveData(imageUrl);
+
 
         }
     }

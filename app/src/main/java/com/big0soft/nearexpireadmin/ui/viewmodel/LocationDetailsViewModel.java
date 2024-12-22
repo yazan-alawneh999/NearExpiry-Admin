@@ -51,6 +51,7 @@ public class LocationDetailsViewModel extends AndroidViewModel {
         if (!isRequestValid(request)) {
             return;
         }
+        successLocationResponseLiveData.setValue(null);
 
     }
 
@@ -73,6 +74,10 @@ public class LocationDetailsViewModel extends AndroidViewModel {
         return true;
     }
 
+
+    public LiveData<LocationDetailsResponse> getSuccessLocationResponseLiveData() {
+        return successLocationResponseLiveData;
+    }
 
     public LiveData<ValidateResult> getCountryNameValidationResultLiveData() {
         return countryNameValidationResultLiveData;
@@ -102,6 +107,24 @@ public class LocationDetailsViewModel extends AndroidViewModel {
         this.streetNameValidationResultLiveData.setValue(streetNameValidationResultLiveData);
     }
 
+
+    public void backupStoreInfo(LocationDetailsRequest locationDetailsRequest) {
+        dataBackup.backup(locationDetailsRequest);
+
+    }
+
+    public void restoreStoreInfo() {
+        locationDetailsBackupLiveData.setValue(dataBackup.restore());
+    }
+
+    public LiveData<LocationDetailsRequest> getLocationDetailsBackupLiveData() {
+        return locationDetailsBackupLiveData;
+    }
+
+    public void clearStoreInfo() {
+        dataBackup.clean();
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
@@ -117,7 +140,8 @@ public class LocationDetailsViewModel extends AndroidViewModel {
         private final IAuthorization authorization;
 
         private final DataBackup<LocationDetailsRequest> dataBackup;
-        public Factory(Application application, BaseRepository baseRepository, IAuthorization authorization,DataBackup<LocationDetailsRequest> dataBackup) {
+
+        public Factory(Application application, BaseRepository baseRepository, IAuthorization authorization, DataBackup<LocationDetailsRequest> dataBackup) {
             this.application = application;
             this.baseRepository = baseRepository;
             this.authorization = authorization;
