@@ -81,7 +81,7 @@ public class LoginViewModel extends AndroidViewModel {
             providerValidateResultLiveData.setValue(validate);
             return false;
         }
-        validate = ValidationFactory.validatePassword(loginRequest.getAuthProvider(), loginRequest.getPassword());
+        validate = ValidationFactory.validatePassword( loginRequest.getPassword());
         if (!validate.isSuccess()) {
             passwordValidateResultLiveData.setValue(validate);
             return false;

@@ -117,12 +117,12 @@ public class LocationDetailsViewModel extends AndroidViewModel {
         locationDetailsBackupLiveData.setValue(dataBackup.restore());
     }
 
-    public LiveData<LocationDetailsRequest> getLocationDetailsBackupLiveData() {
-        return locationDetailsBackupLiveData;
-    }
-
     public void clearStoreInfo() {
         dataBackup.clean();
+    }
+
+    public LiveData<LocationDetailsRequest> getLocationDetailsBackupLiveData() {
+        return locationDetailsBackupLiveData;
     }
 
     @Override

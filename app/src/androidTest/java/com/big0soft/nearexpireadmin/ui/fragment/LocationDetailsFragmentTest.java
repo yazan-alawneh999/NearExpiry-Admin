@@ -45,6 +45,7 @@ public class LocationDetailsFragmentTest {
 
     }
 
+
     @Test
     public void emptyCountry_shouldDisplayError() {
 

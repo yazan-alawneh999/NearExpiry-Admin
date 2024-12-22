@@ -1,6 +1,5 @@
 package com.big0soft.nearexpireadmin.data.validation;
 
-import com.big0soft.nearexpireadmin.R;
 import com.big0soft.nearexpireadmin.domain.enums.AuthProvider;
 import com.big0soft.nearexpireadmin.domain.validation.BaseValidator;
 
@@ -13,12 +12,13 @@ public class ValidationFactory {
     static BaseValidator[] otpValidators;
     static BaseValidator[] doubleInputValidators;
     static BaseValidator[] stringInputValidators;
+    static BaseValidator[] phoneInputValidators;
+
 
     static Map<AuthProvider, BaseValidator[]> mapValidators;
-    static Map<AuthProvider, BaseValidator[]> mapPasswordValidate;
+
     static {
         mapValidators = new HashMap<>();
-        mapPasswordValidate = new HashMap<>();
 
         emailValidators = new BaseValidator[]{
                 new EmptyValidator(),
@@ -35,29 +35,37 @@ public class ValidationFactory {
         stringInputValidators = new BaseValidator[]{
                 new EmptyValidator()
         };
-        mapValidators.put(AuthProvider.EMAIL, emailValidators);
+
+        phoneInputValidators = new BaseValidator[]{
+                new EmptyValidator(),
+                new PhoneValidator()
+        };
+
         passwordValidators = new BaseValidator[]{
                 new EmptyValidator(),
                 new PasswordValidator()
         };
-        mapPasswordValidate.put(AuthProvider.EMAIL, passwordValidators);
+//        mapValidators.put(AuthProvider.EMAIL, passwordValidators);
+        mapValidators.put(AuthProvider.EMAIL, emailValidators);
+        mapValidators.put(AuthProvider.PHONE_NUMBER, phoneInputValidators);
+
     }
 
-    public static ValidateResult validatePassword(AuthProvider authProvider, String provider) {
-
-        BaseValidator[] validators = mapPasswordValidate.get(authProvider);
-
-        if (validators == null) {
-            return new ValidateResult(false, R.string.invalid_provider);
-        }
-        for (BaseValidator validator : validators) {
-            ValidateResult result = validator.validate(provider);
-            if (!result.isSuccess()) {
-                return result;
-            }
-        }
-        return ValidateResult.successResult;
-    }
+//    public static ValidateResult validatePassword( AuthProvider authProvider,String provider) {
+//
+//        BaseValidator[] validators = validatorMap.get(authProvider);
+//
+//        if (validators == null) {
+//            return new ValidateResult(false, R.string.invalid_provider);
+//        }
+//        for (BaseValidator validator : validators) {
+//            ValidateResult result = validator.validate(provider);
+//            if (!result.isSuccess()) {
+//                return result;
+//            }
+//        }
+//        return ValidateResult.successResult;
+//    }
 
 
     public static ValidateResult validate(AuthProvider authProvider, String provider) {
@@ -131,4 +139,6 @@ public class ValidationFactory {
         }
         return ValidateResult.successResult;
     }
+
+
 }

@@ -15,7 +15,9 @@ import com.big0soft.nearexpireadmin.data.responses.ContactDetailsResponse;
 import com.big0soft.nearexpireadmin.data.responses.LocationDetailsResponse;
 import com.big0soft.nearexpireadmin.data.validation.ValidateResult;
 import com.big0soft.nearexpireadmin.data.validation.ValidationFactory;
+import com.big0soft.nearexpireadmin.domain.enums.AuthProvider;
 import com.big0soft.nearexpireadmin.domain.enums.Status;
+import com.big0soft.nearexpireadmin.domain.interfaces.DataBackup;
 import com.big0soft.nearexpireadmin.domain.repository.BaseRepository;
 import com.big0soft.resource.authorization.IAuthorization;
 
@@ -38,32 +40,39 @@ public class ContactDetailsViewModel extends AndroidViewModel {
 
     private final CompositeDisposable disposable;
 
-    public ContactDetailsViewModel(@NonNull Application application, BaseRepository baseRepository, IAuthorization authorization) {
+    private final DataBackup<ContactDetailsRequest> contactBackup;
+    private final MutableLiveData<ContactDetailsRequest> contactDetailsBackupLiveData = new MutableLiveData<>();
+
+    public ContactDetailsViewModel(@NonNull Application application, BaseRepository baseRepository, IAuthorization authorization, DataBackup<ContactDetailsRequest> contactBackup) {
         super(application);
         this.baseRepository = baseRepository;
         disposable = new CompositeDisposable();
         this.authorization = authorization;
+        this.contactBackup = contactBackup;
     }
 
-    public void submitLocationDetails(ContactDetailsRequest request) {
+    public void submitContactDetails(ContactDetailsRequest request) {
         if (!isRequestValid(request)) {
             return;
         }
+        successContactResponseLiveData.setValue(null);
 
     }
 
     private boolean isRequestValid(ContactDetailsRequest request) {
-        ValidateResult whatsappValidateResult = ValidationFactory.validateStringInput(request.getWhatsapp());
-        ValidateResult phoneValidateResult = ValidationFactory.validateStringInput(request.getPhone());
-        ValidateResult emailValidateResult = ValidationFactory.validateStringInput(request.getEmail());
-        if (!whatsappValidateResult.isSuccess()) {
-            whatsappValidationResultLiveData.setValue(whatsappValidateResult);
-            return false;
-        }
+        ValidateResult phoneValidateResult = ValidationFactory.validate(AuthProvider.PHONE_NUMBER, request.getPhone());
+        ValidateResult whatsappValidateResult = ValidationFactory.validate(AuthProvider.PHONE_NUMBER, request.getWhatsapp());
+        ValidateResult emailValidateResult = ValidationFactory.validate(AuthProvider.EMAIL, request.getEmail());
+
         if (!phoneValidateResult.isSuccess()) {
             phoneValidationResultLiveData.setValue(phoneValidateResult);
             return false;
         }
+        if (!whatsappValidateResult.isSuccess()) {
+            whatsappValidationResultLiveData.setValue(whatsappValidateResult);
+            return false;
+        }
+
         if (!emailValidateResult.isSuccess()) {
             emailValidationResultLiveData.setValue(emailValidateResult);
             return false;
@@ -71,6 +80,23 @@ public class ContactDetailsViewModel extends AndroidViewModel {
         return true;
     }
 
+
+    public void backupContactInfo(ContactDetailsRequest contactDetailsRequest) {
+        contactBackup.backup(contactDetailsRequest);
+
+    }
+
+    public void restoreContactBackup() {
+        contactDetailsBackupLiveData.setValue(contactBackup.restore());
+    }
+
+    public void clearStoreInfo() {
+        contactBackup.clean();
+    }
+
+    public LiveData<ContactDetailsResponse> getSuccessContactResponseLiveData() {
+        return successContactResponseLiveData;
+    }
 
     public LiveData<ValidateResult> getPhoneValidationResultLiveData() {
         return phoneValidationResultLiveData;
@@ -86,6 +112,10 @@ public class ContactDetailsViewModel extends AndroidViewModel {
     public LiveData<ValidateResult> getEmailValidationResultLiveData() {
         return emailValidationResultLiveData;
 
+    }
+
+    public LiveData<ContactDetailsRequest> getContactDetailsBackup() {
+        return contactDetailsBackupLiveData;
     }
 
     public void setPhoneValidationResultLiveData(ValidateResult phoneValidationResultLiveData) {
@@ -113,11 +143,13 @@ public class ContactDetailsViewModel extends AndroidViewModel {
         private final Application application;
         private final BaseRepository baseRepository;
         private final IAuthorization authorization;
+        private final DataBackup<ContactDetailsRequest> contactBackup;
 
-        public Factory(Application application, BaseRepository baseRepository, IAuthorization authorization) {
+        public Factory(Application application, BaseRepository baseRepository, IAuthorization authorization, DataBackup<ContactDetailsRequest> contactBackup) {
             this.application = application;
             this.baseRepository = baseRepository;
             this.authorization = authorization;
+            this.contactBackup = contactBackup;
         }
 
         @NonNull
@@ -126,7 +158,7 @@ public class ContactDetailsViewModel extends AndroidViewModel {
             if (!modelClass.isAssignableFrom(ContactDetailsViewModel.class)) {
                 throw new IllegalArgumentException("Unknown ViewModel class");
             }
-            return (T) new ContactDetailsViewModel(application, baseRepository, authorization);
+            return (T) new ContactDetailsViewModel(application, baseRepository, authorization, contactBackup);
         }
     }
 }

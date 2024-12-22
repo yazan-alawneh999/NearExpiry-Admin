@@ -84,7 +84,7 @@ public class RegisterViewModel extends AndroidViewModel {
             providerValidateResultLiveData.postValue(validate);
             return false;
         }
-        validate = ValidationFactory.validatePassword(registrationRequest.authProvider(), registrationRequest.password());
+        validate = ValidationFactory.validatePassword( registrationRequest.password());
         if (!validate.isSuccess()) {
             passwordValidateResultLiveData.postValue(validate);
             return false;

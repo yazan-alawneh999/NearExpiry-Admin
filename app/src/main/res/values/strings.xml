@@ -97,6 +97,7 @@
     <string name="quantity_label">Quantity:</string>
     <string name="price_label">price:</string>
     <string name="logo_image_required">Please Select Logo</string>
+    <string name="invalid_phone">Please Enter An valid Phone Number !</string>
     <string-array name="store_registration_steps">
         <item>Store Setup</item>
         <item>Location Details</item>

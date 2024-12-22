@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment.ContactDetailsFragment">
 
     <data>
 
@@ -8,11 +10,15 @@
             name="viewModel"
             type="com.big0soft.nearexpireadmin.ui.viewmodel.ContactDetailsViewModel" />
 
+        <variable name="contactInfo"
+            type="com.big0soft.nearexpireadmin.data.requests.ContactDetailsRequest"/>
+
         <import type="com.big0soft.nearexpireadmin.domain.enums.Status" />
 
         <import type="android.view.View" />
 
         <import type="com.big0soft.nearexpireadmin.data.validation.ValidateResult" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
+
                     android:_resError="@{viewModel.phoneValidationResultLiveData.message}"
                     android:hint="@string/phone"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +79,8 @@
                         android:id="@+id/fragmentContactDetailsPhoneEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@{contactInfo.phone}"
+                        android:inputType="phone"
                         android:afterTextChanged="@{(edit)->viewModel.setPhoneValidationResultLiveData(ValidateResult.progressResult)}"
                         android:maxLength="50" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +104,9 @@
                         android:id="@+id/fragmentContactDetailsWhatsAppEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="phone"
+
+                        android:text="@{contactInfo.whatsapp}"
                         android:afterTextChanged="@{(edit)->viewModel.setWhatsppValidationResultLiveData(ValidateResult.progressResult)}"
 
                         />
@@ -119,13 +131,14 @@
                         android:id="@+id/fragmentContactDetailsEmailEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@{contactInfo.email}"
                         android:afterTextChanged="@{(edit)->viewModel.setEmailValidationResultLiveData(ValidateResult.progressResult)}"
 
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fragmentContactDetailsDetailsSubmitBtn"
+                    android:id="@+id/fragmentContactDetailsSubmitBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
